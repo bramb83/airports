@@ -25,13 +25,13 @@ public class AirportRestController {
 	@Autowired
 	MetarRepository metarService;
 	
-  	@GetMapping("/airport/{icaoCode}/metar")
+  	@GetMapping("/{icaoCode}/metar")
   	public Iterable<Metar> getMetar() {
 
   		return metarService.findAll();
   	}
 
-	@PostMapping("/airport/{icaoCode}/metar")
+	@PostMapping("/{icaoCode}/metar")
 	public Metar add(@RequestBody Metar met) {
 		
 		return metarService.save(met);
