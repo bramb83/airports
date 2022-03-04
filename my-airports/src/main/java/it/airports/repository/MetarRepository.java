@@ -1,10 +1,16 @@
 package it.airports.repository;
 
-import org.springframework.data.repository.CrudRepository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 
 import it.airports.model.Metar;
 
+@EnableJpaRepositories
+public interface MetarRepository extends JpaRepository<Metar, String> {
 
-public interface MetarRepository extends CrudRepository<Metar, String> {
+	
+	Metar findTopByIcaoCodeOrderByTimeDesc(String icaoCode);
 
 }
