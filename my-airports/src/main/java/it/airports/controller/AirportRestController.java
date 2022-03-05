@@ -32,9 +32,11 @@ public class AirportRestController {
 
 	@PostMapping("/{icaoCode}/metar")
 	public Metar add(@RequestBody Metar met) {
-		
+		if(met.getTime()!=null) {
 		return metarService.save(met);
-	
+		}
+		else
+	    return null;
 	}
    	
  

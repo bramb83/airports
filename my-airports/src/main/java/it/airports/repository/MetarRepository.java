@@ -12,5 +12,6 @@ public interface MetarRepository extends JpaRepository<Metar, String> {
 
 	
 	Metar findTopByIcaoCodeOrderByTimeDesc(String icaoCode);
+	
 
 }

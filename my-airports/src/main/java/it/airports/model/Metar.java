@@ -18,7 +18,7 @@ public class Metar implements Serializable {
 	private String icaoCode;
 	@Id
 	@Column(name = "time")
-	private Timestamp time;
+	private String time;
 	
 
 
@@ -33,12 +33,12 @@ public class Metar implements Serializable {
 		this.icaoCode = icaoCode;
 	}
 
-	public Timestamp getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Timestamp time) {
-		this.time = time;
+	public void setTime(String string) {
+		this.time = string;
 	}
 	public String getData() {
 		return data;
@@ -48,7 +48,7 @@ public class Metar implements Serializable {
 		this.data = data;
 	}
 
-	public Metar(String icaoCode, Timestamp time, String data) {
+	public Metar(String icaoCode, String time, String data) {
 		super();
 		this.icaoCode = icaoCode;
 		this.time = time;
