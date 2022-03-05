@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,19 +65,12 @@ public class SubscriptionRestController {
    	@DeleteMapping(value ="/delete/{icaoCode}")
 	  public void delete(@PathVariable String icaoCode) {
    		subsService.deleteById(icaoCode);
+   	
 	 }
    	
    	
-	 public  String getIcaoCode() {
-   		
-   	     for (int i=0; i<subsService.findAll().size();i++) {
-   	    	subsService.findAll().get(i).getIcaocode();
-   	    	
-		}
-		return getIcaoCode();
-		
-	 }
-   
+ 
+	
 	 @Scheduled(fixedRate = 5000)
 	 private  void getMetar()
 	 {
@@ -88,8 +81,9 @@ public class SubscriptionRestController {
 	     String data=null;
 	     String time=null;
 	     Metar metar = new Metar();
+	     boolean saved= false;
 	   
-	     
+	     if(saved==false) {
 	     for (int i=0; i<subsService.findAll().size();i++) {
 	   	    icaocode =subsService.findAll().get(i).getIcaocode();
 	   	     uri = "https://tgftp.nws.noaa.gov/data/observations/metar/stations/"+icaocode+".TXT";	
@@ -103,12 +97,16 @@ public class SubscriptionRestController {
 	   	     metar.setData(data);
 	   	     metar.setIcaoCode(icaocode);
 	   	     metarService.save(metar);
-	   	      System.out.println("Value saved");
+	   	      System.out.println("Value saved for " + icaocode);
+	   	      saved=true;
 	   	     }
-	   	     else {
+	       }
+	     }
+	   	 else {
 	   	    	 System.out.println("Value already present");
+	   	    	 saved=false;
 	   	     }
-			}
+			
 	    
 	  
         }

@@ -14,11 +14,7 @@ public class Subscriptions {
 	
 	@Column(name = "description")
 	private String description;
-	
-	@Column(name = "active")
-	private boolean active;
-	
-	
+
 	
 	public String getIcaocode() {
 		return icaoCode;
@@ -32,12 +28,7 @@ public class Subscriptions {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public boolean isActive() {
-		return active;
-	}
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+	
 	public Subscriptions(String icaoCode, String description) {
 		super();
 		this.icaoCode = icaoCode;

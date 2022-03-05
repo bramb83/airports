@@ -8,4 +8,6 @@ import it.airports.model.Subscriptions;
 
 public interface SubscriptionsRepository extends JpaRepository<Subscriptions, String> {
 
+	Subscriptions save(String icaoCode);
+
 }
