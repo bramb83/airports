@@ -19,21 +19,19 @@ USE `airport`;
 -- Dump della struttura di tabella airport.metar
 CREATE TABLE IF NOT EXISTS `metar` (
   `icaocode` varchar(5) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time` varchar(50) NOT NULL,
   `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`icaocode`,`time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Dump dei dati della tabella airport.metar: ~2 rows (circa)
+-- Dump dei dati della tabella airport.metar: ~65 rows (circa)
 /*!40000 ALTER TABLE `metar` DISABLE KEYS */;
 INSERT INTO `metar` (`icaocode`, `time`, `data`) VALUES
-	('LBBA', '2022-03-03 19:12:54', 'METAR LDZA\r\n121200Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020='),
-	('LBCC', '2022-03-03 19:17:41', 'METAR LDZA\r\n121200Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020='),
-	('LBCC', '2022-03-03 20:02:35', 'METAR LBCC\r\n121200Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020='),
-	('LBCC', '2022-03-03 20:02:37', 'METAR LBCC\r\n121200Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020='),
-	('LBCC', '2022-03-03 20:03:21', 'METAR LBCC\r\n131300Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020='),
-	('LBCC', '2022-03-03 20:04:03', 'METAR LBCC\r\n131300Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020='),
-	('LDZA', '2022-03-03 14:09:29', 'METAR LDZA\r\n121200Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020=');
+	('LDZA', '2022/03/05 16:30', 'LDZA 051630Z 05010KT 010V110 9999 FEW045 05/M05 Q1018 NOSIG\n'),
+	('LDZA', '2022/03/05 17:00', 'LDZA 051700Z 06007KT 020V100 CAVOK 05/M05 Q1018 NOSIG\n'),
+	('LIMC', '2022/03/05 16:20', 'LIMC 051620Z 17005KT 120V190 CAVOK 09/M04 Q1014 NOSIG\n'),
+	('LIMC', '2022/03/05 16:50', 'LIMC 051650Z 15007KT CAVOK 08/M04 Q1014 NOSIG\n'),
+	('LIME', '2022/03/05 18:01 ', 'METAR LIME\r\n131300Z 0902MPS 090V150 2000 R04/P2000N R22/P2000N OVC050\r\n0/M01 Q1020=');
 /*!40000 ALTER TABLE `metar` ENABLE KEYS */;
 
 -- Dump della struttura di tabella airport.subscriptions
@@ -44,10 +42,9 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   PRIMARY KEY (`icaocode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Dump dei dati della tabella airport.subscriptions: ~3 rows (circa)
+-- Dump dei dati della tabella airport.subscriptions: ~2 rows (circa)
 /*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
 INSERT INTO `subscriptions` (`icaocode`, `description`, `active`) VALUES
-	('LBBA', 'Wien', '0'),
 	('LDZA', 'Zagreb', '1'),
 	('LIMC', 'Milano Malpensa', '0');
 /*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
