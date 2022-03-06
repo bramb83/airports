@@ -90,22 +90,16 @@ public class SubscriptionRestController {
 	   	     result=restTemplate.getForObject(uri, String.class);;
 	   	     data=result.substring(17);
 	   	     time=result.substring(0, 16);
-	   	    // System.out.println("time " + time);
-	   	    // System.out.println("metar time " + metarService.findTopByIcaoCodeOrderByTimeDesc(icaocode).getTime());
 	   	     if(!time.contentEquals(metarService.findTopByIcaoCodeOrderByTimeDesc(icaocode).getTime())) {
 	   	     metar.setTime(time);
 	   	     metar.setData(data);
 	   	     metar.setIcaoCode(icaocode);
 	   	     metarService.save(metar);
-	   	      System.out.println("Value saved for " + icaocode);
+	   	      log.info("Value saved for " + icaocode);
 	   	      saved=true;
 	   	     }
 	       }
 	     }
-	   	 else {
-	   	    	 System.out.println("Value already present");
-	   	    	 saved=false;
-	   	     }
 			
 	    
 	  
